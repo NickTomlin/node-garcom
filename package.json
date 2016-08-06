@@ -1,6 +1,6 @@
 {
   "name": "garcom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rerun a command until it returns successfully or a timeout is reached. Garçom means waiter in Portuguese",
   "main": "index.js",
   "repository": "NickTomlin/node-garcom",
