@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Rerun a command until it returns successfully or a timeout is reached. Garçom means waiter in Portuguese",
   "main": "index.js",
+  "repository": "NickTomlin/node-garcom",
   "scripts": {
     "test": "standard && ava"
   },
