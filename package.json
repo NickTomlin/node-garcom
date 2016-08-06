@@ -1,0 +1,20 @@
+{
+  "name": "garcom",
+  "version": "1.0.0",
+  "description": "Rerun a command until it returns successfully or a timeout is reached. Garçom means waiter in Portuguese",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && ava"
+  },
+  "bin": "./index.js",
+  "author": "Nick Tomlin <nick.tomlin@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "standard": "^7.1.2"
+  }
+}
