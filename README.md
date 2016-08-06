@@ -7,7 +7,7 @@ Basic usage
 ---
 
 ```shell
-npm i garcom
+npm i -g garcom
 garcom <command>
 ```
 
