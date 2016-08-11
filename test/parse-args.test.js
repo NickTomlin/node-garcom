@@ -9,7 +9,8 @@ test('defaults', t => {
     _: [],
     delay: 500,
     wait: 5000,
-    message: ''
+    message: '',
+    invert: false
   })
 })
 

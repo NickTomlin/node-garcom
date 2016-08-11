@@ -20,6 +20,7 @@ Options
 --message <string: ''> message to write to stderr on failure (defaults to not writing)
 --wait <number: '0.5'> number of seconds to wait, e.g. 5
 --delay <number: '5'> number of seconds to wait between runs of the given command
+--invert <bool: false> if true, run command until it does _not_ exit succesfully
 ```
 
 

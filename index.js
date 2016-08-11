@@ -21,7 +21,8 @@ function parseArgs (args) {
     default: {
       delay: '0.5',
       wait: '5',
-      message: ''
+      message: '',
+      invert: false
     }
   })
   parsed.wait = parseFloat(parsed.wait, 10) * 1000
@@ -30,13 +31,18 @@ function parseArgs (args) {
   return parsed
 }
 
+function isSuccess (status, options) {
+  let isZero = status === 0
+  return options.invert ? !isZero : isZero
+}
+
 function runCommand (command, options) {
   let proc = spawn(command[0], command.slice(1))
   proc.stderr.on('data', logBuffer)
   proc.stdout.on('data', logBuffer)
 
   proc.on('close', (status) => {
-    if (status === 0) {
+    if (isSuccess(status, options)) {
       log('success')
       process.exit(0)
     }
@@ -69,5 +75,6 @@ module.exports = {
   main: main,
   runCommand: runCommand,
   parseCommand: parseCommand,
-  parseArgs: parseArgs
+  parseArgs: parseArgs,
+  isSuccess: isSuccess
 }
