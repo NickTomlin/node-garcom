@@ -6,8 +6,8 @@ let debug = require('debug')
 let spawn = require('child_process').spawn
 let minimist = require('minimist')
 
-let log = debug('snore')
-let logBuffer = (b) => debug('snore:out')(b.toString())
+let log = debug('garcom')
+let logBuffer = (b) => debug('garcom:out')(b.toString())
 
 function parseCommand (command) {
   return command.reduce((accum, arg) => {
