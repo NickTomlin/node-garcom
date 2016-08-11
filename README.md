@@ -6,6 +6,8 @@ Rerun a command until it returns successfully or a timeout is reached. (Garçom 
 Basic usage
 ---
 
+Note: Garcom requires node 4+
+
 ```shell
 npm i -g garcom
 garcom <command>
