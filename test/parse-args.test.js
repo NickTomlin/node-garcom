@@ -10,7 +10,8 @@ test('defaults', t => {
     delay: 500,
     wait: 5000,
     message: '',
-    invert: false
+    invert: false,
+    silent: false
   })
 })
 
@@ -27,6 +28,11 @@ test('--delay:integer', t => {
 test('--delay:float', t => {
   let parsedArgs = parseArgs(['--delay', '1.5'])
   t.is(parsedArgs.delay, 1500)
+})
+
+test('--silent: true', t => {
+  let parsedArgs = parseArgs(['--silent', 'true'])
+  t.true(parsedArgs.silent)
 })
 
 test('command', t => {

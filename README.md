@@ -21,6 +21,7 @@ Options
 --wait <number: '0.5'> number of seconds to wait, e.g. 5
 --delay <number: '5'> number of seconds to wait between runs of the given command
 --invert <bool: false> if true, run command until it does _not_ exit succesfully
+--silent <bool: false> write stderr and stdout of command to current process
 ```
 
 

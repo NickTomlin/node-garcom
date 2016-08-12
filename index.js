@@ -7,7 +7,6 @@ let spawn = require('child_process').spawn
 let minimist = require('minimist')
 
 let log = debug('garcom')
-let logBuffer = (b) => debug('garcom:out')(b.toString())
 
 function parseCommand (command) {
   return command.reduce((accum, arg) => {
@@ -18,11 +17,13 @@ function parseCommand (command) {
 function parseArgs (args) {
   let parsed = minimist(args, {
     stopEarly: true,
+    boolean: ['silent', 'invert'],
     default: {
       delay: '0.5',
       wait: '5',
       message: '',
-      invert: false
+      invert: false,
+      silent: false
     }
   })
   parsed.wait = parseFloat(parsed.wait, 10) * 1000
@@ -37,9 +38,12 @@ function isSuccess (status, options) {
 }
 
 function runCommand (command, options) {
-  let proc = spawn(command[0], command.slice(1))
-  proc.stderr.on('data', logBuffer)
-  proc.stdout.on('data', logBuffer)
+  let procOptions = {}
+  if (!options.silent) {
+    procOptions.stdio = 'inherit'
+  }
+
+  let proc = spawn(command[0], command.slice(1), procOptions)
 
   proc.on('close', (status) => {
     if (isSuccess(status, options)) {
