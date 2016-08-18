@@ -5,6 +5,7 @@
 let debug = require('debug')
 let spawn = require('child_process').spawn
 let minimist = require('minimist')
+const VALID_TIMEOUT = /^\d+$/
 
 let log = debug('garcom')
 
@@ -15,18 +16,22 @@ function parseCommand (command) {
 }
 
 function parseArgs (args) {
+  let timeout = args.splice(0, 1)
+  if (!VALID_TIMEOUT.test(timeout)) {
+    throw(new Error(`Invalid timeout specified ${timeout}. Please specify an integer like '30' as the first argument`))
+  }
+
   let parsed = minimist(args, {
     stopEarly: true,
     boolean: ['silent', 'invert'],
     default: {
       delay: '0.5',
-      wait: '5',
       message: '',
       invert: false,
       silent: false
     }
   })
-  parsed.wait = parseFloat(parsed.wait, 10) * 1000
+  parsed.timeout = parseFloat(timeout, 10) * 1000
   parsed.delay = parseFloat(parsed.delay, 10) * 1000
 
   return parsed
@@ -65,7 +70,7 @@ function main (args) {
   setTimeout(function () {
     if (options.message) { process.stderr.write(options.message + '\n') }
     process.exit(1)
-  }, options.wait)
+  }, options.timeout)
 
   log(`Running ${command}`)
   runCommand(command, options)
